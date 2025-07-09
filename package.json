@@ -1,0 +1,16 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "creating api using expree",
+  "license": "ISC",
+  "author": "Harsh",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch index"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.16.2"
+  }
+}

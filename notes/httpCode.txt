@@ -1,0 +1,69 @@
+
+
+Here’s a list of commonly used **HTTP status codes**
+ grouped by category:
+
+
+### ✅ **1xx – Informational**
+------------------------------
+| Code | Meaning             |
+| ---- | ------------------- |
+| 100  | Continue            |
+| 101  | Switching Protocols |
+------------------------------
+
+### ✅ **2xx – Success**
+---------------------
+| Code | Meaning    |
+| ---- | ---------- |
+| 200  | OK         |
+| 201  | Created    |
+| 202  | Accepted   |
+| 204  | No Content |
+---------------------
+
+### ⚠️ **3xx – Redirection**
+-------------------------------------
+| Code | Meaning                    |
+| ---- | -------------------------- |
+| 301  | Moved Permanently          |
+| 302  | Found (Temporary Redirect) |
+| 304  | Not Modified               |
+-------------------------------------
+
+### ❌ **4xx – Client Errors**
+--------------------------------------------------
+| Code | Meaning                                 |
+| ---- | --------------------------------------- |
+| 400  | Bad Request                             |
+| 401  | Unauthorized                            |
+| 403  | Forbidden                               |
+| 404  | Not Found                               |
+| 409  | Conflict                                |
+| 422  | Unprocessable Entity (Validation Error) |
+--------------------------------------------------
+
+
+### 🔥 **5xx – Server Errors**
+--------------------------------
+| Code | Meaning               |
+| ---- | --------------------- |
+| 500  | Internal Server Error |
+| 501  | Not Implemented       |
+| 503  | Service Unavailable   |
+--------------------------------
+
+
+### 📌 Common for APIs:
+----------------------------------
+| Use case           | Code      |
+|------------------- | ----------|
+| Successful GET     | 200       |
+| Successful POST    | 201       |
+| Validation failed  | 400 / 422 |
+| Auth required      | 401       |
+| Wrong credentials  | 403       |
+| Not found          | 404       |
+| Already exists     | 409       |
+| Server crash/error | 500       |
+----------------------------------
