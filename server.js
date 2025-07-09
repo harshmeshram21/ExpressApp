@@ -2,10 +2,12 @@ const express = require('express')
 const users = require('./mockdata.json')
 const { dbConnect } = require("./config/mongoseConnection");
 
+const dotenv = require("dotenv");
+dotenv.config(); // Load env variables before anything else
 // handler
 const app = express();
 // port
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 // connecting to db
 dbConnect()
@@ -15,6 +17,7 @@ dbConnect()
   })
   .catch((error) => {
     console.log("EROR", error);
+    process.exit(1); // Exit on failure
   });
 
 

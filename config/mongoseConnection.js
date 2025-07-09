@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
 
-const url = "mongodb://localhost:27017/";
-
 const dbConnect = async () => {
-  await mongoose.connect(url);
+  await mongoose.connect(process.env.MONGO_URI);
 };
 
 module.exports = { dbConnect };
