@@ -4,13 +4,14 @@ const { dbConnect } = require("./config/mongoseConnection");
 
 // handler
 const app = express();
+// port
 const PORT = 8000;
 
 // connecting to db
 dbConnect()
   .then(() => {
     console.log("database connected succesfully");
-    app.listen(PORT,()=>console.log("server started at PORT " +PORT))
+    app.listen(PORT,()=>console.log("server started at PORT " + PORT))
   })
   .catch((error) => {
     console.log("EROR", error);
