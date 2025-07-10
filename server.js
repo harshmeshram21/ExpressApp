@@ -1,14 +1,17 @@
-const express = require('express')
-const users = require('./mockdata.json')
-const { dbConnect } = require("./config/mongoseConnection");
-
+const express = require("express");
 const dotenv = require("dotenv");
-dotenv.config(); // Load env variables before anything else
-// handler
-const app = express();
-// port
-const PORT = process.env.PORT || 8000;
+const { dbConnect } = require("./config/mongoseConnection");
+const userRoutes = require("./routes/user.routes");
 
+
+dotenv.config();
+const app = express();
+
+app.use(express.json());
+
+app.use("/api/users", userRoutes);
+
+const PORT = process.env.PORT;
 // connecting to db
 dbConnect()
   .then(() => {
@@ -16,17 +19,25 @@ dbConnect()
     app.listen(PORT,()=>console.log("server started at PORT " + PORT))
   })
   .catch((error) => {
-    console.log("EROR", error);
+    console.error("EROR", error);
     process.exit(1); // Exit on failure
-  });
+});
 
 
 
+
+
+
+
+
+
+
+// *********** api using mock data **************
 // get api 
 app.get('/users',(req,resp)=>{
    return resp.json(users)
 })
-
+// get user by id
 app.get('/user/:id', (req, resp) => {
     const id = Number(req.params.id);
     const user = users.find((user) => user.id === id);
