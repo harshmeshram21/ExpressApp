@@ -27,9 +27,6 @@ const userSchema = mongoose.Schema({
     minlength: [6, "Password must be at least 6 characters"],
     trim: true,
   },
-});
+},{timestamp:true});
 
-
-const userSchemaModal =mongoose.modal("user",userSchema);
-
-module.exports = userSchemaModal;
+module.exports = mongoose.modal("user",userSchema);;

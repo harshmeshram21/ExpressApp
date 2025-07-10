@@ -7,7 +7,7 @@ dotenv.config(); // Load env variables before anything else
 // handler
 const app = express();
 // port
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 
 // connecting to db
 dbConnect()
@@ -22,18 +22,18 @@ dbConnect()
 
 
 
-// // get api 
-// app.get('/users',(req,resp)=>{
-//    return resp.json(users)
-// })
+// get api 
+app.get('/users',(req,resp)=>{
+   return resp.json(users)
+})
 
-// app.get('/users/:id', (req, resp) => {
-//     const id = Number(req.params.id);
-//     const user = users.find((user) => user.id === id);
+app.get('/user/:id', (req, resp) => {
+    const id = Number(req.params.id);
+    const user = users.find((user) => user.id === id);
     
-//     if (!user) {
-//         return resp.status(404).json({ message: "User not found" });
-//     }
-//     return resp.json(user);
-// });
+    if (!user) {
+        return resp.status(404).json({ message: "User not found" });
+    }
+    return resp.json(user);
+});
 
