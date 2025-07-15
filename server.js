@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const { dbConnect } = require("./config/mongoseConnection");
+const { dbConnect } = require("./config/db");
 const userRoutes = require("./routes/user.routes");
 
 
@@ -16,7 +16,7 @@ const PORT = process.env.PORT;
 dbConnect()
   .then(() => {
     console.log("database connected succesfully");
-    app.listen(PORT,()=>console.log("server started at PORT " + PORT))
+    app.listen(PORT,()=>console.log(`server started at PORT http://localhost:${PORT}/api/users`))
   })
   .catch((error) => {
     console.error("EROR", error);
