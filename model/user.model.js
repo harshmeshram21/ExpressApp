@@ -1,4 +1,6 @@
+// models/user.model.js
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = mongoose.Schema(
   {
@@ -14,7 +16,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Email is required"],
       unique: true,
-      match: [/^[a-zA-Z0-9._%+-]+@gmail\.com$/, "Please enter a valid Gmail address"],
+      match: [/^[a-zA-Z0-9._%+-]+@gmail\.com$/, "Please enter a valid Gmail address"], // Change regex if needed
       trim: true,
     },
     age: {
@@ -30,7 +32,20 @@ const userSchema = mongoose.Schema(
       trim: true,
     },
   },
-  { timestamps: true } 
+  { timestamps: true }
 );
+
+// Hash password before save
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = mongoose.model("User", userSchema);
