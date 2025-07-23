@@ -2,13 +2,19 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { dbConnect } = require("./config/db");
 const userRoutes = require("./routes/user.routes");
-
+const authRoute = require("./routes/authRoute")
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 
+// Mount auth routes
+app.use("/api/auth", authRoute);
+
+// Mount user routes
 app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT;
@@ -16,7 +22,7 @@ const PORT = process.env.PORT;
 dbConnect()
   .then(() => {
     console.log("database connected succesfully");
-    app.listen(PORT,()=>console.log(`server started at PORT http://localhost:${PORT}/api/users`))
+    app.listen(PORT,()=>console.log(`server started at http://localhost:${PORT}/api/users`))
   })
   .catch((error) => {
     console.error("EROR", error);

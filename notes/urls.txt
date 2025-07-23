@@ -1,0 +1,36 @@
+
+### Auth Routes (`/api/auth`)
+
+* **Login:**
+  `POST /api/auth/login`
+  *Body:* `{ email, password }`
+  Logs in the user and returns a JWT token.
+
+* **Logout:**
+  `POST /api/auth/logout`
+  Logs out the user (just a response, no real token invalidation).
+
+---
+
+### User Routes (`/api/users`) — Protected by `authMiddleware`
+
+* **Create User:**
+  `POST /api/users/`
+  Creates a new user. (No auth required based on your code, since middleware is applied after this route.)
+
+* **Get All Users:**
+  `GET /api/users/`
+  Returns a list of all users.
+
+* **Get User By ID:**
+  `GET /api/users/:userId`
+  Returns a specific user by their ID.
+
+* **Update User:**
+  `PUT /api/users/:userId`
+  Updates user data.
+
+* **Delete User:**
+  `DELETE /api/users/:userId`
+  Deletes a user by ID.
+
